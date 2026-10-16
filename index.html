@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flowers for You</title>
+<style>
+*{box-sizing:border-box}
+:root{--night:#080d20;--pink:#ff8fbd;--lilac:#d7a7ff}
+body{margin:0;min-height:100vh;overflow:hidden;background:linear-gradient(#070b1b 0%,#121b3a 65%,#23304b 100%);font-family:Georgia,serif;color:#fff}
+.scene{position:relative;width:100%;height:100svh;min-height:540px;overflow:hidden;isolation:isolate}
+.moon{position:absolute;top:8%;right:14%;width:68px;height:68px;border-radius:50%;background:#fff2d6;box-shadow:0 0 35px #fff1c477,0 0 100px #c5d4ff22}
+.moon:after{content:"";position:absolute;left:-13px;top:-7px;width:65px;height:65px;border-radius:50%;background:#0b1026}
+.stars{position:absolute;inset:0;background-image:radial-gradient(2px 2px at 12% 16%,#fff 60%,transparent),radial-gradient(1px 1px at 26% 35%,#fff 60%,transparent),radial-gradient(2px 2px at 43% 12%,#fff 60%,transparent),radial-gradient(1px 1px at 60% 26%,#fff 60%,transparent),radial-gradient(2px 2px at 78% 18%,#fff 60%,transparent),radial-gradient(1px 1px at 90% 44%,#fff 60%,transparent),radial-gradient(1px 1px at 18% 55%,#fff 60%,transparent),radial-gradient(2px 2px at 70% 53%,#fff 60%,transparent);animation:twinkle 3s infinite alternate}
+.intro{position:absolute;z-index:5;top:8%;left:0;width:100%;text-align:center;padding:0 18px;transition:opacity .8s,transform .8s}
+h1{font-weight:normal;font-size:clamp(2rem,6vw,4rem);margin:0 0 12px;text-shadow:0 0 22px #ff8fbd88}
+.intro p{font-family:system-ui,sans-serif;color:#e0d9f1;font-size:clamp(.9rem,2.8vw,1.1rem);margin:0 0 22px}
+button{border:1px solid #ffc3dc88;border-radius:30px;background:#e98bb72b;color:white;padding:12px 25px;font-size:1rem;cursor:pointer;backdrop-filter:blur(5px);transition:.25s}
+button:hover{background:#e98bb75c;transform:translateY(-2px)}
+.ground{position:absolute;bottom:-15%;left:-10%;width:120%;height:35%;border-radius:50% 50% 0 0;background:linear-gradient(#17283a,#080e1d);box-shadow:0 -15px 60px #151e38}
+.flower{position:absolute;bottom:12%;width:100px;height:240px;transform-origin:bottom center;transform:scale(0);animation:grow 2.2s cubic-bezier(.2,.8,.2,1) forwards;z-index:2}
+.stem{position:absolute;bottom:0;left:49px;width:4px;height:150px;border-radius:5px;background:linear-gradient(90deg,#285c48,#72bd7c);transform-origin:bottom;animation:sway 4s ease-in-out infinite alternate}
+.leaf{position:absolute;width:38px;height:17px;background:linear-gradient(135deg,#83d18b,#28674d);border-radius:100% 0 100% 0;bottom:55px;left:48px;transform:rotate(-28deg)}
+.leaf.two{bottom:88px;left:13px;transform:scaleX(-1) rotate(-24deg)}
+.head{position:absolute;left:25px;top:8px;width:55px;height:55px;animation:bob 3s ease-in-out infinite alternate}
+.petal{position:absolute;left:18px;top:0;width:20px;height:34px;border-radius:50% 50% 45% 45%;transform-origin:50% 28px;background:linear-gradient(#ffd3ed,#f16bb1);box-shadow:0 0 10px #ff7eb533}
+.petal:nth-child(1){transform:rotate(0deg) translateY(-9px)}
+.petal:nth-child(2){transform:rotate(45deg) translateY(-9px)}
+.petal:nth-child(3){transform:rotate(90deg) translateY(-9px)}
+.petal:nth-child(4){transform:rotate(135deg) translateY(-9px)}
+.petal:nth-child(5){transform:rotate(180deg) translateY(-9px)}
+.petal:nth-child(6){transform:rotate(225deg) translateY(-9px)}
+.petal:nth-child(7){transform:rotate(270deg) translateY(-9px)}
+.petal:nth-child(8){transform:rotate(315deg) translateY(-9px)}
+.center{position:absolute;left:20px;top:20px;width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff4a6,#f5aa42 70%);box-shadow:0 0 12px #ffc65d}
+.flower.lilac .petal{background:linear-gradient(#f0dcff,#a77af6)}
+.flower.yellow .petal{background:linear-gradient(#fff0a5,#ffb847)}
+.firefly{position:absolute;width:4px;height:4px;border-radius:50%;background:#fff4a4;box-shadow:0 0 12px 3px #ffe88a99;animation:firefly 6s ease-in-out infinite}
+.caption{position:absolute;bottom:5%;left:0;width:100%;text-align:center;color:#d8d9ee;font:italic 1rem Georgia,serif;z-index:5;opacity:.8}
+.heart{position:absolute;z-index:4;bottom:-30px;font-size:20px;animation:rise 7s linear forwards;pointer-events:none}
+@keyframes grow{to{transform:scale(1)}}
+@keyframes sway{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
+@keyframes bob{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
+@keyframes twinkle{from{opacity:.45}to{opacity:1}}
+@keyframes firefly{0%,100%{opacity:.1;transform:translate(0,0)}50%{opacity:1;transform:translate(15px,-25px)}}
+@keyframes rise{to{transform:translateY(-110vh) rotate(35deg);opacity:0}}
+@media(max-width:600px){.flower{transform-origin:bottom center}.moon{width:48px;height:48px}.moon:after{width:47px;height:47px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important}}
+</style>
+</head>
+<body>
+<div class="scene" id="scene">
+  <div class="stars"></div><div class="moon"></div>
+  <header class="intro" id="intro">
+    <h1>Flowers for You 🌷</h1>
+    <p>A little garden, made with love.</p>
+    <button id="bloom">Mekarkan bunga ✨</button>
+  </header>
+  <div class="ground"></div>
+  <div class="caption" id="caption">Untuk seseorang yang istimewa ♡</div>
+</div>
+<script>
+const scene=document.getElementById('scene');
+const colors=['pink','lilac','yellow','pink','lilac','pink','yellow'];
+function createFlower(index){
+  const flower=document.createElement('div');
+  flower.className='flower '+colors[index%colors.length];
+  const left=6+index*13;
+  flower.style.left=`${Math.min(left,88)}%`;
+  flower.style.height=`${155+(index%3)*28}px`;
+  flower.style.animationDelay=`${index*.22}s`;
+  flower.style.zIndex=String(2+index%3);
+  flower.innerHTML='<div class="stem"></div><div class="leaf"></div><div class="leaf two"></div><div class="head">'+
+    '<i class="petal"></i>'.repeat(8)+'<i class="center"></i></div>';
+  scene.appendChild(flower);
+}
+for(let i=0;i<7;i++)createFlower(i);
+for(let i=0;i<18;i++){
+  const light=document.createElement('i');light.className='firefly';
+  light.style.left=(Math.random()*96)+'%';light.style.top=(20+Math.random()*65)+'%';
+  light.style.animationDelay=(-Math.random()*6)+'s';scene.appendChild(light);
+}
+document.getElementById('bloom').addEventListener('click',()=>{
+  document.getElementById('intro').style.transform='translateY(-8px)';
+  document.querySelector('#intro p').textContent='Semoga hari-harimu selalu indah 💖';
+  document.getElementById('bloom').textContent='Bunga sudah mekar 🌸';
+  document.getElementById('caption').textContent='Kamu layak mendapatkan hal-hal yang indah.';
+  for(let i=0;i<18;i++){
+    const heart=document.createElement('span');heart.className='heart';
+    heart.textContent=['♡','♥','✧','🌸'][i%4];
+    heart.style.left=(Math.random()*96)+'%';heart.style.animationDelay=(Math.random()*2)+'s';
+    scene.appendChild(heart);setTimeout(()=>heart.remove(),9000);
+  }
+});
+</script>
+</body>
+</html>
